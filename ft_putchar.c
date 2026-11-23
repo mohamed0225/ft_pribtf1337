@@ -6,7 +6,7 @@
 /*   By: mohaidbe <mohaidbe@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 16:53:10 by mohaidbe          #+#    #+#             */
-/*   Updated: 2026/11/12 19:15:31 by mohaidbe         ###   ########.fr       */
+/*   Updated: 2026/11/22 14:13:18 by mohaidbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@ int	ft_putchar(char c)
 int	ft_putstr(char *str)
 {
 	int	i;
-	int	j;
+	int	res;
 
 	if (!str)
-		return (write(1, "(null)", 6));
+		str = "(null)";
 	i = 0;
-	j = 0;
 	while (str[i])
 	{
-		j += ft_putchar(str[i]);
+		res = ft_putchar(str[i]);
+		if (res == -1)
+			return (-1);
 		i++;
 	}
-	return (j);
+	return (i);
 }

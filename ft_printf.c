@@ -6,7 +6,7 @@
 /*   By: mohaidbe <mohaidbe@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 23:22:44 by mohaidbe          #+#    #+#             */
-/*   Updated: 2026/11/19 16:28:03 by mohaidbe         ###   ########.fr       */
+/*   Updated: 2026/11/23 10:42:13 by mohaidbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ static int	ft_check_format(va_list args, const char *c)
 		i = ft_putchar(*(c + 1));
 	else if (*c == '%' && *(c + 1))
 	{
-		i += ft_putchar(*c);
+		i = ft_putchar(*c);
 		i += ft_putchar(*(c + 1));
+		if (i != 2)
+			return (-1);
 	}
 	return (i);
 }
@@ -50,8 +52,9 @@ int	ft_printf(const char *str, ...)
 		return (-1);
 	i = -1;
 	p = 0;
+	ret = 0;
 	va_start(args, str);
-	while (str[++i])
+	while (str[++i] && ret != -1)
 	{
 		if (str[i] == '%' && !str[i + 1])
 			ret = -1;
@@ -59,9 +62,10 @@ int	ft_printf(const char *str, ...)
 			ret = ft_check_format(args, &str[i++]);
 		else
 			ret = ft_putchar(str[i]);
-		if (ret == -1)
-			return (va_end(args), -1);
 		p += ret;
 	}
-	return (va_end(args), p);
+	va_end(args);
+	if (ret == -1)
+		p = -1;
+	return (p);
 }
