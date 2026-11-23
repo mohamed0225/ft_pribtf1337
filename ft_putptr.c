@@ -6,7 +6,7 @@
 /*   By: mohaidbe <mohaidbe@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:34:37 by mohaidbe          #+#    #+#             */
-/*   Updated: 2026/11/22 14:16:37 by mohaidbe         ###   ########.fr       */
+/*   Updated: 2026/11/23 12:19:43 by mohaidbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	ft_putptr(void *ptr)
 
 	if (!ptr)
 	{
-		ft_putstr("(nil)");
-		return (-1);
+		i = ft_putstr("(nil)");
+		return (i);
 	}
 	i = ft_putstr("0x");
 	if (i == -1)
