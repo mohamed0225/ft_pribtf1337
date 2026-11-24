@@ -6,7 +6,7 @@
 /*   By: mohaidbe <mohaidbe@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:34:37 by mohaidbe          #+#    #+#             */
-/*   Updated: 2026/11/23 12:19:43 by mohaidbe         ###   ########.fr       */
+/*   Updated: 2026/11/23 18:16:19 by mohaidbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	ft_hexalower(unsigned long n)
 int	ft_putptr(void *ptr)
 {
 	int	i;
+	int	res;
 
 	if (!ptr)
 	{
@@ -46,6 +47,9 @@ int	ft_putptr(void *ptr)
 	i = ft_putstr("0x");
 	if (i == -1)
 		return (-1);
-	i += ft_hexalower((unsigned long)ptr);
+	res = ft_hexalower((unsigned long)ptr);
+	if (res == -1)
+		return (-1);
+	i += res;
 	return (i);
 }
